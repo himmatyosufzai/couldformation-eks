@@ -39,14 +39,15 @@ jobs:
         run: aws eks update-kubeconfig --name temporary-eks-cluster-${ENVIRONMENT_STAGE} --region $AWS_REGION
 
       # Add deployment steps for each tool below
-      - name: Deploy ingress-nginx controller
-        run: kubectl apply -f ingress-nginx/deploy.yaml
+      # - name: Deploy ingress-nginx controller
+      #   run: kubectl apply -f ingress-nginx/deploy.yaml
 
       # Example for a tool like Cluster Autoscaler
       - name: Deploy Cluster Autoscaler
         run: |
-            echo "Deploy Cluster Autoscaler steps go here"
-
+            helm upgrade --install cluster-autoscaler ./cluster-autoscaler/helm-chart \
+             --values ./cluster-autoscaler/helm-chart/values/dev-values.yaml
+            
       # Example for a tool like EKS Logging
       - name: Deploy EKS Logging
         run: |
@@ -56,7 +57,7 @@ jobs:
       # Example: Deploy External DNS
       # Example: Setup K8s User Roles
 
-      - name: Finalize Deployment
+      # - name: Finalize Deployment
         run: |
             echo "Final deployment steps and cleanup"
 

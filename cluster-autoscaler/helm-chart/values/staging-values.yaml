@@ -1,0 +1,3 @@
+name: cluster-autoscaler
+namespace: kube-system
+roleARN: arn:aws:iam::905418100201:role/AmazonEKSClusterAutoscalerRole
