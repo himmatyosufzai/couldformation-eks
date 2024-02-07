@@ -45,8 +45,9 @@ jobs:
       # Example for a tool like Cluster Autoscaler
       - name: Deploy Cluster Autoscaler
         run: |
-            echo "Deploy Cluster Autoscaler steps go here"
-
+            helm upgrade --install cluster-autoscaler ./cluster-autoscaler/helm-chart \
+             --values ./cluster-autoscaler/helm-chart/values/dev-values.yaml
+            
       # Example for a tool like EKS Logging
       - name: Deploy EKS Logging
         run: |
@@ -56,7 +57,7 @@ jobs:
       # Example: Deploy External DNS
       # Example: Setup K8s User Roles
 
-      - name: Finalize Deployment
-        run: |
-            echo "Final deployment steps and cleanup"
+      # - name: Finalize Deployment
+        # run: |
+        #     echo "Final deployment steps and cleanup"
 
